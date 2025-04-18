@@ -3,61 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Your Portfolio</title>
+    <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Hello, I'm Shreeniwas R Kolagal 👋</h1>
-        <p>I am passionate about coding and problem-solving. Here's a glimpse of my work:</p>
+        <div class="container">
+            <nav>
+                <div class="logo">Shreeniwas Kolagal</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section>
-        <h2>🛠️ Projects</h2>
-        <ul>
-            <li><strong>Hospital Management System</strong>: Consists of Minimalistic Doctor, Nurse and Patient interface. <br> <a href="https://github.com/ShreeniwasKolagal/hospital-app" target="_blank">Repo Link</a></li>
-            <li><strong>DSAFromScratch</strong>: Following a roadmap to Master DSA. <br> <a href="https://github.com/ShreeniwasKolagal/DSAFromScratch" target="_blank">Repo Link</a></li>
-        </ul>
-
-        <h2>🚀 Skills</h2>
-        <ul>
-            <li>C++, Python, JavaScript</li>
-            <li>Data Structures and Algorithms</li>
-            <li>Web Development (React.js, Node.js)</li>
-        </ul>
-
-        <h2>🌐 Find Me Online</h2>
-        <ul>
-            <li><a href="https://github.com/ShreeniwasKolagal" target="_blank">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/shreeniwas-kolagal-04336426a/" target="_blank">LinkedIn</a></li>
-        </ul>
-
-        <!-- <h2>Portfolio Topic</h2>
-        <dl>
-            <dt>Course Name</dt>
-            <dd>Algorithmic Problem Solving</dd>
-
-            <dt>Course Code</dt>
-            <dd>Course Code Placeholder</dd>
-
-            <dt>Name</dt>
-            <dd>Your Name</dd>
-
-            <dt>SRN</dt>
-            <dd>Your SRN</dd>
-
-            <dt>Course Instructor</dt>
-            <dd>Instructor Name Placeholder</dd>
-
-            <dt>University</dt>
-            <dd>KLE Technological University</dd>
-
-            <dt>Portfolio Topic/Domain</dt>
-            <dd>Google</dd>
-        </dl> -->
-
-        <!-- <blockquote>“The only way to do great work is to love what you do.” – Steve Jobs</blockquote> -->
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hello, I'm <span>Shreeniwas Kolagal</span></h1>
+                <p>A curious Computer Science student with a love for coding and building impactful tech solutions.</p>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+        </div>
     </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <!-- <h3>Who am I?</h3> -->
+                <p>I am a passionate Computer Science student with a strong interest in coding and developing innovative digital solutions. From building responsive websites to exploring various programming concepts, I enjoy turning ideas into functional and efficient software.</p>
+<p>My journey in tech began several years ago, and since then, I’ve worked on a variety of projects that have deepened my understanding of both software development and web technologies. I’m committed to continuous learning and always eager to explore new tools, frameworks, and trends in the ever-evolving tech world.</p>
+
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    
+                    <div class="project-info">
+                        <h3>Car Rental App</h3>
+                        <p>A fully responsive car rental platform offering a dynamic vehicle catalog, real-time availability, booking system, and secure payment integration for a seamless rental experience.</p>
+                        <a href="https://github.com/ShreeniwasKolagal/Car-Rental-App" target="_blank" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    
+                    <div class="project-info">
+                        <h3>DSAFromScratch</h3>
+                        <p>Following a structured roadmap to master Data Structures and Algorithms, starting from the basics and progressing to complex topics with hands-on coding exercises.</p>
+                        <a href="https://github.com/ShreeniwasKolagal/DSAFromScratch" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    
+                    <div class="project-info">
+                        <h3>Hospital Management System</h3>
+                        <p>A minimalistic web application that includes Doctor Dashboard with features for Doctor to add and manage a patient health data.</p>
+                        <a href="https://github.com/ShreeniwasKolagal/hospital-app" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <ul class="skills-list">
+                        <li>C/C++</li>
+                        <li>Python</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                        <li>Node.js</li>
+                        <li>Express</li>
+                        <li>MongoDB</li>
+                        <li>SQL</li>
+                        <!-- <li>Git & GitHub</li> -->
+                        <!-- <li>Responsive Design</li>
+                        <li>RESTful APIs</li>
+                        <li>Webpack</li> -->
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <ul class="skills-list">
+                        <li>Problem Solving</li>
+                        <li>Critical Thinking</li>
+                        <li>Communication</li>
+                        <li>Time Management</li>
+                        <li>Teamwork</li>
+                        <li>Adaptability</li>
+                        <li>Project Management</li>
+                        <!-- <li>Attention to Detail</li> -->
+                        <li>Creative Thinking</li>
+                        <!-- <li>User Empathy</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="business-cases" class="business-cases-section">
+        <div class="container">
+            <h2 class="section-title">Chosen Domain</h2>
+            <div class="domain-card">
+                <h3>Nvidia</h3>
+                <p>
+                    Nvidia is a global leader in visual computing technologies and has expanded its reach into AI, data centers, and autonomous machines. Known for its powerful GPUs and cutting-edge research, Nvidia drives innovation across gaming, deep learning, scientific computing, and enterprise AI. Its platforms enable developers and businesses to solve complex problems, accelerate workloads, and pioneer advancements in fields like autonomous vehicles, healthcare, and robotics.
+                </p>
+            </div>
+            <h2 class="section-title">Innovative Business Cases</h2>
+            <div class="business-cases">
+                <div class="business-case">
+                    <h4>GROOT N1</h4>
+                    <p>
+                        A next-generation humanoid robot developed using Nvidia's Isaac platform, designed for general-purpose tasks and human-robot interaction in industrial and home environments.
+                    </p>
+                    <p><strong>$3.7B</strong> Market Potential<br><strong>4–6 Years</strong> ROI Timeline</p>
+                    <ul>
+                        <li>Embodied AI with real-world learning</li>
+                        <li>Human-like dexterity and mobility</li>
+                        <li>Multi-modal perception and interaction</li>
+                    </ul>
+                    <!-- <a href="#">View Detailed Analysis →</a> -->
+                </div>
+                <div class="business-case">
+                    <h4>Autonomous Vehicle Platforms</h4>
+                    <p>
+                        A full-stack solution for self-driving cars, combining Nvidia's Drive platform, sensor fusion, simulation, and deep learning for safe autonomous navigation.
+                    </p>
+                    <p><strong>$5.1B</strong> Market Potential<br><strong>4–6 Years</strong> ROI Timeline</p>
+                    <ul>
+                        <li>Real-time sensor processing</li>
+                        <li>End-to-end vehicle simulation</li>
+                        <li>Scalable software stack</li>
+                    </ul>
+                    <!-- <a href="#">View Detailed Analysis →</a> -->
+                </div>
+                <div class="business-case">
+                    <h4>Edge AI for Smart Cities</h4>
+                    <p>
+                        Nvidia Jetson-powered edge computing for real-time analytics in smart cities—enabling traffic optimization, public safety, and environmental monitoring.
+                    </p>
+                    <p><strong>$3.3B</strong> Market Potential<br><strong>2–4 Years</strong> ROI Timeline</p>
+                    <ul>
+                        <li>On-device processing</li>
+                        <li>Real-time urban analytics</li>
+                        <li>Scalable IoT integration</li>
+                    </ul>
+                    <!-- <a href="#">View Detailed Analysis →</a> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="contact-info">
+            <p><i class="fas fa-envelope icon"></i> shreeniwaskolagal@gmail.com</p>
+            <p><i class="fas fa-phone icon"></i> +91 94486 72233</p>
+            <p><i class="fab fa-github icon"></i> <a href="https://github.com/ShreeniwasKolagal" target="_blank">Github Profile</a></p>
+            <p><i class="fab fa-linkedin icon"></i> <a href="https://www.linkedin.com/in/yourprofile" target="_blank">Linkedin Profile</a></p>
+            <!-- <p><i class="fas fa-map-marker-alt icon"></i> San Francisco, CA</p> -->
+          </div>
+        </div>
+      </section>
+      
+      
+      
+      
+
+    <footer> 
+  <div class="footer-container">
+    <div class="footer-left">
+      <p>© 2025 Shreeniwas Kolagal. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg" alt="GitHub">
+      </a>
+      <!-- <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/twitter.svg" alt="Twitter">
+      </a> -->
+    </div>
+  </div>
+</footer>
+
+      
 </body>
 </html>
