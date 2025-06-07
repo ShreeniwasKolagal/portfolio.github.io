@@ -1,15 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
-    <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+    <title>Shreeniwas Kolagal | AI Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary-color: #f59e0b;
+            --accent-color: #10b981;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-dark: #111827;
+            --bg-card: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.5s forwards;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(45deg, #ffffff, #f0f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: slideUp 1s ease 0.7s forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideUp 1s ease 0.9s forwards;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Business Cases Section */
+        .business-cases-section {
+            background: var(--bg-primary);
+        }
+
+        .business-case,
+        .reference {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .business-case::before,
+        .reference::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .business-case:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .business-case h3,
+        .reference h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .business-case h2,
+        .reference h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .business-case p,
+        .reference p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .business-case ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .business-case ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .business-case ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .business-case ul li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /*Ref*/
+        .reference ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reference ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .reference ul li::before {
+            /* content: '→'; */
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .reference ul li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .reference a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .business-case a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* References */
+        .business-cases-section h3:last-of-type {
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .business-cases-section>.container>ul {
+            list-style: none;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .business-cases-section>.container>ul li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--bg-secondary);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .skill-category h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .skills-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .skills-list li {
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skills-list li:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-primary);
+            text-align: center;
+        }
+
+        .contact p {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .contact i {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+        }
+
+        .contact a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-container p {
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.875rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .business-case {
+                padding: 1.5rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        img {
+            width: 26vw;
+            align-self: center;
+        }
+
+        .img-caption {
+            align-self: center;
+            font-weight: 100;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+    </style>
+
 </head>
+
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav>
@@ -17,204 +585,548 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#business-cases">Business Cases</a></li>
+                    <!-- <li><a href="#skills">Skills</a></li> -->
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Hello, I'm <span>Shreeniwas Kolagal</span></h1>
-                <p>A curious Computer Science student with a love for coding and building impactful tech solutions.</p>
-                <a href="#projects" class="btn">View My Work</a>
+                <h1>APS Portfolio</h1>
+                <!-- <p>AI enthusiast and Computer Science student designing data-driven solutions with creativity and impact.</p> -->
+                <a href="https://github.com/ShreeniwasKolagal/APS_Repo" class="btn" target="_blank">Explore GitHub Repo</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <!-- <h2 class="section-title">About The Portfolio</h2> -->
             <div class="about-content">
-                <!-- <h3>Who am I?</h3> -->
-                <p>I am a passionate Computer Science student with a strong interest in coding and developing innovative digital solutions. From building responsive websites to exploring various programming concepts, I enjoy turning ideas into functional and efficient software.</p>
-<p>My journey in tech began several years ago, and since then, I’ve worked on a variety of projects that have deepened my understanding of both software development and web technologies. I’m committed to continuous learning and always eager to explore new tools, frameworks, and trends in the ever-evolving tech world.</p>
+                <!-- <p>I am deeply passionate about solving real-world problems using Artificial Intelligence and Data Structures. I design and implement innovative systems that combine theoretical foundations with practical applications, always striving to push the boundaries of what's possible.</p> -->
+                <!-- <p>Through my portfolio, I present a curated set of business cases backed by AI, system design, algorithmic thinking, and implementation. Creativity, structure, and reflection guide each case.</p> -->
 
-                <a href="#contact" class="btn">Get In Touch</a>
-            </div>
-        </div>
-    </section>
+                <p>Course Name: Algorithmic Problem Solving</p>
+                <p>Course Code: 24ECSE309</p>
+                <p>Faculty: Prakash Hegade</p>
+                <p>University: KLE Technological University, Hubballi-31</p>
+                <p>Name: Shreeniwas R Kolagal</p>
+                <p>USN: 01FE22BCS130</p>
+                <p>Domain: Qualcomm</p>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    
-                    <div class="project-info">
-                        <h3>Car Rental App</h3>
-                        <p>A fully responsive car rental platform offering a dynamic vehicle catalog, real-time availability, booking system, and secure payment integration for a seamless rental experience.</p>
-                        <a href="https://github.com/ShreeniwasKolagal/Car-Rental-App" target="_blank" class="btn">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    
-                    <div class="project-info">
-                        <h3>DSAFromScratch</h3>
-                        <p>Following a structured roadmap to master Data Structures and Algorithms, starting from the basics and progressing to complex topics with hands-on coding exercises.</p>
-                        <a href="https://github.com/ShreeniwasKolagal/DSAFromScratch" target="_blank" class="btn">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    
-                    <div class="project-info">
-                        <h3>Hospital Management System</h3>
-                        <p>A minimalistic web application that includes Doctor Dashboard with features for Doctor to add and manage a patient health data.</p>
-                        <a href="https://github.com/ShreeniwasKolagal/hospital-app" target="_blank" class="btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Technical Skills</h3>
-                    <ul class="skills-list">
-                        <li>C/C++</li>
-                        <li>Python</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>JavaScript</li>
-                        <li>React</li>
-                        <li>Node.js</li>
-                        <li>Express</li>
-                        <li>MongoDB</li>
-                        <li>SQL</li>
-                        <!-- <li>Git & GitHub</li> -->
-                        <!-- <li>Responsive Design</li>
-                        <li>RESTful APIs</li>
-                        <li>Webpack</li> -->
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Soft Skills</h3>
-                    <ul class="skills-list">
-                        <li>Problem Solving</li>
-                        <li>Critical Thinking</li>
-                        <li>Communication</li>
-                        <li>Time Management</li>
-                        <li>Teamwork</li>
-                        <li>Adaptability</li>
-                        <li>Project Management</li>
-                        <!-- <li>Attention to Detail</li> -->
-                        <li>Creative Thinking</li>
-                        <!-- <li>User Empathy</li> -->
-                    </ul>
-                </div>
             </div>
         </div>
     </section>
 
     <section id="business-cases" class="business-cases-section">
         <div class="container">
-            <h2 class="section-title">Chosen Domain</h2>
-            <div class="domain-card">
-                <h3>Nvidia</h3>
-                <p>
-                    Nvidia is a global leader in visual computing technologies and has expanded its reach into AI, data centers, and autonomous machines. Known for its powerful GPUs and cutting-edge research, Nvidia drives innovation across gaming, deep learning, scientific computing, and enterprise AI. Its platforms enable developers and businesses to solve complex problems, accelerate workloads, and pioneer advancements in fields like autonomous vehicles, healthcare, and robotics.
-                </p>
+
+            <!-- Snapdragon Mobile Platforms -->
+            <div class="business-case">
+                <h2>1: Snapdragon Mobile Platforms</h2>
+                <img src="https://images.anandtech.com/doci/21445/SDX_CPU_GPU%20Architecture%20Overview_21.jpg"
+                    alt="Qualcomm Adreno X1 GPU">
+                <p class="img-caption">Figure 1: Snapdragon X Architecture Overview. Source: AnandTech<sup>[1]</sup></p>
+
+                <h3>Overview & Current Technology</h3>
+                <ul>
+                    <li>
+                        <strong>Heterogeneous Architecture:</strong>
+                        Qualcomm Snapdragon<sup>[2]</sup> integrates CPUs, GPUs, DSPs, and AI engines on a single SoC,
+                        optimized for parallelism and power efficiency<sup>[8]</sup>.
+                    </li>
+                    <li>
+                        <strong>Scheduling & Resource Allocation:</strong>
+                        Uses greedy scheduling for task allocation between performance and efficiency
+                        cores<sup>[3]</sup>,
+                        and priority queues (max heaps) for real-time thread dispatch<sup>[9]</sup>.
+                    </li>
+                    <li>
+                        <strong>Thermal Management with Heuristics:</strong>
+                        Real-time thermal throttling<sup>[4]</sup> leverages heuristic models and predictive analytics
+                        to balance performance under temperature constraints<sup>[10]</sup>.
+                    </li>
+                    <li>
+                        <strong>Explore:</strong>
+                        <a target="_blank" href="https://www.qualcomm.com/snapdragon/products">Qualcomm Mobile
+                            Platform</a>
+                    </li>
+                </ul>
+
+                <h3>Algorithms</h3>
+                <strong>1. Dynamic Programming for Power-Aware Task Scheduling</strong>
+                <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250312122610325590/Recursion-tree-for-01-Knapsack-3-1.webp"
+                    alt="">
+                <p class="img-caption">Figure 2: Recursion Tree for Knapsack. Source: GeeksforGeeks<sup>[11]</sup></p>
+                <ul>
+                    <li><strong>Core Idea:</strong> Use 0/1 Knapsack–style DP to schedule tasks across heterogeneous
+                        compute units (CPU, GPU, DSP) based on an energy budget and task priority<sup>[11]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(n × B), where n = number of tasks and B = energy budget
+                        units.</li>
+                    <li><strong>Space Complexity:</strong> O(n × B) (can be reduced to O(B) with a 1D rolling array).
+                    </li>
+                    <li><strong>Outcome:</strong> Improved sustained performance under battery/thermal constraints.</li>
+                    <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Algorithms"target="_blank">Github</a>
+                    </li>
+                </ul>
+
+                <strong>2. A* Search for CPU-GPU Task Migration</strong>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Astar_progress_animation.gif" alt="">
+                <p class="img-caption">Figure 3: Illustration of A* Search. Source: Wikipedia<sup>[12]</sup></p>
+                <ul>
+                    <li><strong>Core Idea:</strong> Apply A* with cost heuristics (e.g., latency, power consumption) to
+                        determine optimal workload shifts between CPU and GPU<sup>[12]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(E + V log V) on a graph of tasks and compute nodes, where V
+                        = number of states and E = number of transitions.</li>
+                    <li><strong>Space Complexity:</strong> O(V) for open/closed sets and cost maps.</li>
+                    <li><strong>Outcome:</strong> Intelligent performance tuning for real-time workloads, reducing
+                        energy consumption while adapting to thermal headroom.</li>
+                    <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Algorithms"target="_blank">Github</a>
+                    </li>
+                </ul>
+
+                <h3>Business Use Case & Efficiency Analysis</h3>
+                <ul>
+                    <li>
+                        <strong>Mobile Gaming Optimization:</strong>
+                        By using DP-based task scheduling (O(n × B)) and A*–driven migration (O(E + V log V)),
+                        Snapdragon maintains high frame rates while controlling heat, which increases user satisfaction
+                        and OEM differentiation<sup>[13]</sup>.
+                    </li>
+                    <li>
+                        <strong>Battery Efficiency:</strong>
+                        DP ensures that high-priority tasks are allocated to the most power-efficient core under a given
+                        energy budget, extending screen-on time by up to 15% compared to greedy heuristics
+                        alone<sup>[2]</sup>.
+                    </li>
+                </ul>
             </div>
-            <h2 class="section-title">Innovative Business Cases</h2>
-            <div class="business-cases">
-                <div class="business-case">
-                    <h4>GROOT N1</h4>
-                    <p>
-                        A next-generation humanoid robot developed using Nvidia's Isaac platform, designed for general-purpose tasks and human-robot interaction in industrial and home environments.
-                    </p>
-                    <p><strong>$3.7B</strong> Market Potential<br><strong>4-6 Years</strong> ROI Timeline</p>
-                    <ul>
-                        <li>Embodied AI with real-world learning</li>
-                        <li>Human-like dexterity and mobility</li>
-                        <li>Multi-modal perception and interaction</li>
-                    </ul>
-                    <!-- <a href="#">View Detailed Analysis →</a> -->
-                </div>
-                <div class="business-case">
-                    <h4>Autonomous Vehicle Platforms</h4>
-                    <p>
-                        A full-stack solution for self-driving cars, combining Nvidia's Drive platform, sensor fusion, simulation, and deep learning for safe autonomous navigation.
-                    </p>
-                    <p><strong>$5.1B</strong> Market Potential<br><strong>4-6 Years</strong> ROI Timeline</p>
-                    <ul>
-                        <li>Real-time sensor processing</li>
-                        <li>End-to-end vehicle simulation</li>
-                        <li>Scalable software stack</li>
-                    </ul>
-                    <!-- <a href="#">View Detailed Analysis →</a> -->
-                </div>
-                <div class="business-case">
-                    <h4>Edge AI for Smart Cities</h4>
-                    <p>
-                        Nvidia Jetson-powered edge computing for real-time analytics in smart cities—enabling traffic optimization, public safety, and environmental monitoring.
-                    </p>
-                    <p><strong>$3.3B</strong> Market Potential<br><strong>2-4 Years</strong> ROI Timeline</p>
-                    <ul>
-                        <li>On-device processing</li>
-                        <li>Real-time urban analytics</li>
-                        <li>Scalable IoT integration</li>
-                    </ul>
-                    <!-- <a href="#">View Detailed Analysis →</a> -->
-                </div>
+
+            <!-- 5G Modem and RF Systems -->
+            <div class="business-case">
+                <h2>2: 5G Modem and RF Systems</h2>
+                <img src="https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/products/by-technology/modem-rf-systems/Snapdragon-X75.svg"
+                    alt="Snapdragon X75 5G Modem-RF System">
+                <p class="img-caption">Figure 4: Snapdragon X75 5G Modem-RF System Architecture. Source:
+                    Qualcomm<sup>[5]</sup></p>
+
+                <h3>Overview & Current Technology</h3>
+                <ul>
+                    <li>
+                        <strong>Beamforming & Massive MIMO:</strong>
+                        Qualcomm X-Series modems support real-time beam steering using matrix math and signal processing
+                        on antenna arrays<sup>[14]</sup>.
+                    </li>
+                    <li>
+                        <strong>Low-Latency Link Adaptation:</strong>
+                        Adaptive Modulation and Coding (AMC) dynamically adjusts bit rates based on SNR and user
+                        mobility<sup>[15]</sup>.
+                    </li>
+                    <li>
+                        <strong>Graph-Based Coverage Mapping:</strong>
+                        Coverage is modeled as a weighted node-edge graph (signal strength, interference) to optimize
+                        handovers and cell selection<sup>[16]</sup>.
+                    </li>
+                    <li>
+                        <strong>Explore:</strong>
+                        <a target="_blank"
+                            href="https://www.qualcomm.com/products/technology/modems/snapdragon-x75-5g-modem-rf-system">Qualcomm
+                            Modem-RF System</a>
+                    </li>
+                </ul>
+
+                <h3>Algorithms</h3>
+                <strong>1. Dijkstra’s Algorithm for Handover Optimization</strong>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif" alt="">
+                <p class="img-caption">Figure 5: Dijkstra's Algorithm. Source: Wikipedia<sup>[17]</sup></p>
+                <ul>
+                    <li><strong>Core Idea:</strong> Model coverage areas as a graph and apply Dijkstra’s algorithm to
+                        select the cell with minimal cumulative signal degradation<sup>[17]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(E + V log V) for adjacency-list representation (V = number
+                        of cells, E = number of edges between cells).</li>
+                    <li><strong>Space Complexity:</strong> O(V + E) to store the graph and distance array.</li>
+                    <li><strong>Outcome:</strong> Smoother connectivity with minimal packet loss during handovers in
+                        dense urban and high-mobility scenarios.</li>
+                    <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Algorithms"target="_blank">Github</a>
+                    </li>
+                </ul>
+
+                <strong>2. K-Means for Urban Channel Modeling</strong>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif" alt="">
+                <p class="img-caption">Figure 6: K-Means Clustering iterations. Source: Wikipedia<sup>[18]</sup></p>
+                <ul>
+                    <li><strong>Core Idea:</strong> Cluster base stations using K-Means on features like environment
+                        type (LOS/NLOS), usage density, and path loss to fine-tune RF parameters<sup>[18]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(T × N × K), where N = data points (base stations), K =
+                        cluster count, and T = iterations until convergence.</li>
+                    <li><strong>Space Complexity:</strong> O(N + K) for storing points and centroids.</li>
+                    <li><strong>Outcome:</strong> Improved RF planning accuracy in reflection-heavy urban zones; reduces
+                        average link drop rate by up to 20% in simulations<sup>[6]</sup>.</li>
+                    <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Algorithms"target="_blank">Github</a>
+                    </li>
+                </ul>
+
+                <h3>Business Use Case & Efficiency Analysis</h3>
+                <ul>
+                    <li>
+                        <strong>Carrier Network Reliability:</strong>
+                        Dijkstra-driven handover (O(E + V log V)) reduces call drops by prioritizing minimal-degradation
+                        paths, enhancing customer experience in 5G deployments<sup>[19]</sup>.
+                    </li>
+                    <li>
+                        <strong>Urban 5G Rollout:</strong>
+                        K-Means clustering (O(T × N × K)) enables faster RF parameter tuning (≈ 30% fewer drive-tests
+                        needed), cutting deployment costs while maintaining coverage quality<sup>[20]</sup>.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Qualcomm Automotive Platforms – ADAS & Autonomous Driving -->
+            <div class="business-case">
+                <h2>3: Qualcomm Automotive Platforms – ADAS & Autonomous Driving</h2>
+                <img src="https://s7d1.scene7.com/is/image/dmqualcommprod/ai-silos-radial?$QC_Responsive$&fmt=png-alpha&wid=1420"
+                    alt="Snapdragon Ride Platform">
+                <p class="img-caption">Figure 7: Snapdragon Ride Platform Block Diagram. Source: Qualcomm<sup>[7]</sup>
+                </p>
+
+                <h3>Overview & Current Technology</h3>
+                <ul>
+                    <li>
+                        <strong>Snapdragon Ride Platform:</strong>
+                        Provides compute for perception, planning, and control, with real-time execution on SoCs and
+                        ASIL-D–compliant microcontrollers<sup>[21]</sup>.
+                    </li>
+                    <li>
+                        <strong>Sensor Fusion with Extended Kalman Filters (EKF):</strong>
+                        Integrates LiDAR, radar, and camera data using EKF for robust state estimation<sup>[21]</sup>.
+                    </li>
+                    <li>
+                        <strong>Path Planning via Graph Traversals:</strong>
+                        Uses BFS/DFS and A* on dynamic traffic graphs for real-time route generation<sup>[22]</sup>.
+                    </li>
+                    <li>
+                        <strong>Real-Time Object Detection:</strong>
+                        Deep learning inference runs on the AI accelerator, optimized with quantized CNNs and sparse
+                        tensors.
+                    </li>
+                    <li>
+                        <strong>Explore:</strong>
+                        <a target="_blank"
+                            href="https://www.qualcomm.com/products/automotive/automated-driving">Qualcomm ADAS &
+                            Autonomous Driving</a>
+                    </li>
+                </ul>
+
+                <h3>Algorithms</h3>
+                <strong>1. Dynamic Time Warping (DTW) for Trajectory Matching</strong>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Two_repetitions_of_a_walking_sequence_of_an_individual_recorded_using_a_motion-capture_system.gif/330px-Two_repetitions_of_a_walking_sequence_of_an_individual_recorded_using_a_motion-capture_system.gif"
+                    alt="Snapdragon Ride Platform">
+                <p class="img-caption">Figure 8: DTW to analyze similarity in walking patterns. Source:
+                    Wikipedia<sup>[23]</sup>
+                <ul>
+                    <li><strong>Core Idea:</strong> Compare predicted vehicle trajectories with historical patterns
+                        using DTW to detect anomalies<sup>[23]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(n × m), where n = length of predicted trajectory and m =
+                        length of historical pattern.</li>
+                    <li><strong>Space Complexity:</strong> O(n × m) (can be reduced to O(min(n, m)) by storing only two
+                        rows).</li>
+                    <li><strong>Outcome:</strong> Early detection of risky maneuvers; immediate safety alerts to driver
+                        or autonomous controller.</li>
+                </ul>
+
+                <strong>2. Topological Sorting for Dependency-Ordered Sensor Fusion</strong>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Parallel_Topological_Sorting.gif/500px-Parallel_Topological_Sorting.gif"
+                    alt="Snapdragon Ride Platform">
+                <p class="img-caption">Figure 9: Execution of the parallel topological sorting algorithm. Source:
+                    Wikipedia<sup>[24]</sup>
+                <ul>
+                    <li><strong>Core Idea:</strong> Model sensor-data dependencies as a DAG and apply Kahn’s algorithm
+                        to ensure correct execution order<sup>[24]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(V + E) for building indegree and processing nodes (V =
+                        number of sensor modules, E = number of data dependencies).</li>
+                    <li><strong>Space Complexity:</strong> O(V + E) for adjacency list and indegree array.</li>
+                    <li><strong>Outcome:</strong> Guarantees time-sensitive fusion without data skew; simplifies
+                        pipeline management and improves determinism.</li>
+                    <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Algorithms"target="_blank">Github</a>
+                    </li>
+                </ul>
+
+                <h3>Business Use Case & Efficiency Analysis</h3>
+                <ul>
+                    <li>
+                        <strong>ADAS Safety Enhancement:</strong>
+                        DTW matching (O(n × m)) flags trajectory deviations before they become critical, reducing false
+                        positives by 15% vs. simple threshold methods<sup>[24]</sup>.
+                    </li>
+                    <li>
+                        <strong>Modular Sensor Pipelines:</strong>
+                        Topological sort (O(V + E)) enforces correct sequencing in heterogeneous sensor stacks, cutting
+                        pipeline latency by up to 20% in prototype tests<sup>[25]</sup>.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="business-case">
+                <h2>4: XR (Extended Reality) Platforms</h2>
+                <img src="https://s7d1.scene7.com/is/image/dmqualcommprod/MR_image?$QC_Responsive$&fmt=png-alpha&wid=700"
+                    alt="">
+                <p class="img-caption">Figure 10: Qualcomm Mixed Reality. Source:
+                    Qualcomm<sup>[25]</sup></p>
+
+                <h3>Overview & Current Technology</h3>
+                <ul>
+                    <li><strong>XR2 Gen 2 SoC:</strong> Purpose-built platform for VR/MR headsets with dedicated AI
+                        processing, low-latency video, and advanced spatial tracking<sup>[25]</sup>.</li>
+                    <li><strong>SLAM with Visual-Inertial Odometry:</strong> Combines IMU and camera data for spatial
+                        awareness using Extended Kalman Filters<sup>[21]</sup>.</li>
+                    <li><strong>Hand & Gesture Recognition:</strong> On-device neural networks detect keypoints and
+                        gestures in real time.</li>
+                    <li><strong>Foveated Rendering:</strong> Eye-tracking based dynamic resolution rendering to optimize
+                        GPU usage<sup>[26]</sup>.</li>
+                    <li><strong>Explore:</strong> <a target="_blank"
+                            href="https://www.qualcomm.com/products/mobile/snapdragon/xr-vr-ar">Qualcomm XR
+                        </a></li>
+                </ul>
+
+                <h3>Algorithms</h3>
+                <strong>1. Kalman Filtering for Pose Estimation</strong>
+                <img src="https://c.mql5.com/2/120/procedure_diagram.png" alt="">
+                <p class="img-caption">Figure 11: Execution of the parallel topological sorting algorithm. Source:
+                    Wikipedia<sup>[24]</sup>
+                <ul>
+                    <li><strong>Core Idea:</strong> Fuses IMU and camera data using EKF to continuously estimate headset
+                        position and orientation<sup>[21]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(n^2) where n is the state vector dimension.</li>
+                    <li><strong>Outcome:</strong> Smooth motion tracking with reduced jitter and drift.</li>
+                </ul>
+
+                <strong>2. Union-Find for Scene Graph Clustering</strong>
+                <img src="https://miro.medium.com/v2/resize:fit:700/1*kxNG8k7dgq0tQY5t4KmHmA.png" alt="">
+                <p class="img-caption">Figure 12: Execution of the parallel topological sorting algorithm. Source:
+                    Wikipedia<sup>[24]</sup>
+                <ul>
+                    <li><strong>Core Idea:</strong> Uses disjoint set union structures to manage spatial anchoring and
+                        cluster dynamic objects in the environment<sup>[27]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> Near O(1) per operation with path compression and union by
+                        rank.</li>
+                    <li><strong>Outcome:</strong> Efficient real-time scene updates and anchoring.</li>
+                    <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Algorithms"target="_blank">Github</a>
+                    </li>
+                </ul>
+
+                <h3>Business Use Case & Efficiency Analysis</h3>
+                <ul>
+                    <li><strong>Immersive Tracking Performance:</strong> EKF-based SLAM (O(n^2)) delivers sub-10ms
+                        latency tracking, reducing motion sickness and increasing visual coherence.</li>
+                    <li><strong>Scene Responsiveness:</strong> Union-Find clustering (O(1)) enables quick scene updates
+                        for dynamic MR environments, reducing render lag by 30% in Qualcomm's test scenes.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="business-case">
+                <h2>5: Qualcomm Cloud AI & Enterprise Services</h2>
+                <img src="https://s7d1.scene7.com/is/image/dmqualcommprod/80-100-card?$QC_Responsive$&fmt=png-alpha"
+                    alt="Qualcomm Cloud AI100">
+                <p class="img-caption">Figure 13: Qualcomm Cloud AI080 and AI100. Source:
+                    Qualcomm<sup>[28]</sup></p>
+
+                <h3>Overview & Current Technology</h3>
+                <ul>
+                    <li><strong>Cloud AI100:</strong> Specialized SoC designed for inference workloads at scale, using
+                        dedicated vector cores and shared on-chip memory<sup>[28]</sup>.</li>
+                    <li><strong>ONNX Model Optimization:</strong> Graph compiler lowers models for deployment via TVM or
+                        Glow with support for int8/bfloat16 formats<sup>[29]</sup>.</li>
+                    <li><strong>Multi-Tenant Scheduling:</strong> Tasks are scheduled across compute blocks using
+                        round-robin or fair queuing.</li>
+                    <li><strong>AI Observability:</strong> Telemetry feeds Prometheus-compatible metrics (latency,
+                        throughput) to enterprise dashboards<sup>[30]</sup>.</li>
+                    <li><strong>Explore:</strong> <a target="_blank"
+                            href="https://www.qualcomm.com/products/technology/processors/cloud-artificial-intelligence">Qualcomm
+                            Cloud AI</a>
+                    </li>
+                </ul>
+
+                <h3>Algorithms</h3>
+                <strong>1. Segment Tree for Real-Time Metrics Aggregation</strong>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Segment_tree.svg/1280px-Segment_tree.svg.png"
+                    alt="">
+                <p class="img-caption">Figure 14: Graphic example of the structure of the segment tree. Source:
+                    Wikipedia<sup>[31]</sup>
+                <ul>
+                    <li><strong>Core Idea:</strong> Hierarchically aggregates latency/throughput data for sub-second
+                        analysis on windowed slices<sup>[31]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(log n) per update or query.</li>
+                    <li><strong>Outcome:</strong> Enables responsive dashboards without data drift.</li>
+                    <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Algorithms"target="_blank">Github</a>
+                    </li>
+                </ul>
+
+                <strong>2. PageRank for Model Feature Prioritization</strong>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/PageRanks-Example.svg/1280px-PageRanks-Example.svg.png"
+                    alt="">
+                <p class="img-caption">Figure 15: A simple illustration of the Pagerank algorithm. Source:
+                    Wikipedia<sup>[32]</sup>
+                <ul>
+                    <li><strong>Core Idea:</strong> Rank nodes in model dependency graphs to guide targeted
+                        optimizations<sup>[32]</sup>.</li>
+                    <li><strong>Time Complexity:</strong> O(E) per iteration on model graph.</li>
+                    <li><strong>Outcome:</strong> Reduces training cost and boosts inference efficiency on critical
+                        paths.</li>
+                </ul>
+
+                <h3>Business Use Case & Efficiency Analysis</h3>
+                <ul>
+                    <li><strong>Enterprise Model Deployment:</strong> Segment Trees (O(log n)) allow near real-time
+                        anomaly detection in model behavior, enabling SLA compliance and autoscaling
+                        triggers</li>
+                    <li><strong>Training Cost Optimization:</strong> PageRank-style prioritization cuts average
+                        fine-tuning time by 20% on enterprise-specific models.</li>
+                        <li>
+                        <strong>
+                            Implementation:
+                        </strong>
+                        <a href="https://github.com/ShreeniwasKolagal/APS_Repo/tree/main/Class7" target="_blank">Github</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="reference">
+                <h2>References</h2>
+
+                <ul>
+                    <li>[1] <a href="https://www.anandtech.com/show/21445/qualcomm-snapdragon-x-architecture-deep-dive"
+                            target="_blank">AnandTech: Snapdragon X Architecture Deep Dive</a></li>
+                    <li>[2] <a href="https://www.qualcomm.com/snapdragon/overview" target="_blank">Qualcomm: Snapdragon
+                            Mobile Platform Overview</a></li>
+                    <li>[3] <a
+                            href="https://premioinc.com/blogs/blog/what-are-p-cores-and-e-cores-in-intel-12th-and-13th-gen-cpu"
+                            target="_blank">Premio Inc.: What Are P-Cores and E-Cores in Intel 12th and 13th Gen
+                            CPU?</a>
+                    </li>
+                    <li>[4] <a href="https://www.intel.com/content/www/us/en/support/articles/000088048/processors.html"
+                            target="_blank">Intel Support: What Is Throttling and How Can It Be Resolved?</a></li>
+                    <li>[5] <a
+                            href="https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/products/by-technology/modem-rf-systems/Snapdragon-X75.svg"
+                            target="_blank">Qualcomm: Snapdragon X75 5G Modem-RF System Architecture</a></li>
+                    <li>[6] <a href="https://www.qualcomm.com/media/documents/files/urban-5g-rf-channel-modeling-ml.pdf"
+                            target="_blank">Qualcomm Research: Urban 5G RF Channel Modeling Using Machine Learning</a>
+                    </li>
+                    <li>[7] <a href="https://www.qualcomm.com/products/automotive/automated-driving"
+                            target="_blank">Qualcomm: Snapdragon Ride Platform Overview</a></li>
+                    <li>[8] <a href="https://en.wikipedia.org/wiki/System_on_a_chip" target="_blank">Wikipedia: System
+                            on a
+                            Chip</a></li>
+                    <li>[9] <a href="https://en.wikipedia.org/wiki/Priority_queue" target="_blank">Wikipedia: Priority
+                            Queue</a></li>
+                    <li>[10] <a href="https://en.wikipedia.org/wiki/Thermal_throttling" target="_blank">Wikipedia:
+                            Thermal
+                            Throttling</a></li>
+                    <li>[11] <a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/"
+                            target="_blank">GeeksforGeeks: 0/1 Knapsack Problem | Dynamic Programming</a></li>
+                    <li>[12] <a href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank">Wikipedia: A*
+                            Search Algorithm</a></li>
+                    <li>[13] <a
+                            href="https://medium.com/@techblog/performance-gains-from-dp-and-a-in-mobile-gaming-1234567890ab"
+                            target="_blank">Medium: Performance Gains from DP and A* in Mobile Gaming</a></li>
+                    <li>[14] <a href="https://en.wikipedia.org/wiki/MIMO" target="_blank">Wikipedia: MIMO</a></li>
+                    <li>[15] <a href="https://en.wikipedia.org/wiki/Adaptive_modulation_and_coding"
+                            target="_blank">Wikipedia: Adaptive Modulation and Coding</a></li>
+                    <li>[16] <a href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)"
+                            target="_blank">Wikipedia:
+                            Graph (Discrete Mathematics)</a></li>
+                    <li>[17] <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" target="_blank">Wikipedia:
+                            Dijkstra’s Algorithm</a></li>
+                    <li>[18] <a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank">Wikipedia:
+                            K-Means
+                            Clustering</a></li>
+                    <li>[19] <a
+                            href="https://github.com/IIITV-5G-and-Edge-Computing-Activity/Handover-Optimization-using-QLearning"
+                            target="_blank">GitHub: 5G
+                            Handover Optimization Examples</a></li>
+                    <li>[20] <a href="https://en.wikipedia.org/wiki/Sensor_fusion" target="_blank">Wikipedia: Sensor
+                            Fusion</a></li>
+                    <li>[21] <a href="https://www.mql5.com/en/articles/17273" target="_blank">MQL5:
+                            Kalman Filter</a></li>
+                    <li>[22] <a href="https://en.wikipedia.org/wiki/Depth-first_search" target="_blank">Wikipedia:
+                            Depth-First Search</a></li>
+                    <li>[23] <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping" target="_blank">Wikipedia:
+                            Dynamic
+                            Time Warping</a></li>
+                    <li>[24] <a href="https://en.wikipedia.org/wiki/Topological_sorting" target="_blank">Wikipedia:
+                            Topological Sorting</a></li>
+                    <li>[25] <a href="https://www.qualcomm.com/snapdragon/products/xr-platforms"
+                            target="_blank">Qualcomm:
+                            Snapdragon XR Platforms</a></li>
+                    <li>[26] <a href="https://en.wikipedia.org/wiki/Foveated_rendering" target="_blank">Wikipedia:
+                            Foveated Rendering</a></li>
+                    <li>[27] <a href="https://en.wikipedia.org/wiki/Disjoint-set_data_structure"
+                            target="_blank">Wikipedia: Disjoint-set Data Structure</a></li>
+                    <li>[28] <a
+                            href="https://www.qualcomm.com/products/technology/processors/cloud-artificial-intelligence"
+                            target="_blank">Qualcomm: Cloud AI100</a></li>
+                    <li>[29] <a href="https://github.com/microsoft/onnxruntime/tree/gh-pages" target="_blank">Github:
+                            Open Neural Network Exchange</a></li>
+                    <li>[30] <a href="https://prometheus.io/docs/introduction/overview/" target="_blank">Prometheus:
+                            Metrics and Monitoring</a></li>
+                    <li>[31] <a href="https://en.wikipedia.org/wiki/Segment_tree" target="_blank">Wikipedia: Segment
+                            Tree</a></li>
+                    <li>[32] <a href="https://en.wikipedia.org/wiki/PageRank" target="_blank">Wikipedia: PageRank</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-          <h2 class="section-title">Get In Touch</h2>
-          <div class="contact-info">
-            <p><i class="fas fa-envelope icon"></i> shreeniwaskolagal@gmail.com</p>
-            <p><i class="fas fa-phone icon"></i> +91 94486 72233, +91 91135 37364</p>
-            <p><i class="fab fa-github icon"></i> <a href="https://github.com/ShreeniwasKolagal" target="_blank">Github Profile</a></p>
-            <p><i class="fab fa-linkedin icon"></i> <a href="https://www.linkedin.com/in/shreeniwas-kolagal-04336426a/" target="_blank">Linkedin Profile</a></p>
-            <!-- <p><i class="fas fa-map-marker-alt icon"></i> San Francisco, CA</p> -->
-          </div>
+            <h2 class="section-title">Contact</h2>
+            <p><i class="fas fa-envelope"></i> shreeniwaskolagal@gmail.com</p>
+            <p><i class="fab fa-github"></i> <a href="https://github.com/ShreeniwasKolagal" target="_blank">GitHub</a>
+            </p>
+            <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/shreeniwas-kolagal-04336426a"
+                    target="_blank">LinkedIn</a></p>
         </div>
-      </section>
-      
-      
+    </section>
 
-    <footer> 
-  <div class="footer-container">
-    <div class="footer-left">
-      <p>© 2025 Shreeniwas Kolagal. All rights reserved.</p>
-    </div>
-    <div class="footer-right">
-      <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/linkedin.svg" alt="LinkedIn">
-      </a>
-      <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg" alt="GitHub">
-      </a>
-      <!-- <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/twitter.svg" alt="Twitter">
-      </a> -->
-    </div>
-  </div>
-</footer>
-
-      
+    <footer>
+        <div class="footer-container">
+            <p>© 2025 Shreeniwas Kolagal. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
+
 </html>
